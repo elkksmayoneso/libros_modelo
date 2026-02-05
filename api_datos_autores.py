@@ -30,3 +30,11 @@ class api_datos_autores:
 
     def invertir_autores(self):
         self.api_lista_autores.reverse()
+
+        for i in range (len (self.api_lista_autores)):
+            print("imprime por posicion")
+            print(self.api_lista_autores)
+            
+            for j in range (len (self.api_lista_autores[i])):
+                print("imprime por posicion de las hijas")
+                print(self.api_lista_autores[i][j])

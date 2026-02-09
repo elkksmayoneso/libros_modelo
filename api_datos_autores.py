@@ -3,38 +3,70 @@ class api_datos_autores:
     def __init__(self):
         self.api_lista_autores = []
 
-    def guardar_autores(self, lista_autores):
-        self.api_lista_autores.append(lista_autores)
-        print(self.api_lista_autores)
+    # append()
+    def append_autor(self, autor):
+        self.api_lista_autores.append(autor)
 
-    def extender_autores(self, nueva_lista):
-        self.api_lista_autores.extend(nueva_lista)
+    # extend()
+    def extend_autores(self, lista_autores):
+        self.api_lista_autores.extend(lista_autores)
 
-    def insertar_autor(self, lista_autores, pos):
-        self.api_lista_autores.insert(pos, lista_autores)
+    # insert()
+    def insert_autor(self, pos, autor):
+        self.api_lista_autores.insert(pos, autor)
 
-    def eliminar_autor(self, lista_autores):
-        self.api_lista_autores.remove(lista_autores)
+    # remove()
+    def remove_autor(self, autor):
+        self.api_lista_autores.remove(autor)
 
-    def eliminar_por_pos_autor(self, lista_autores, pos):
-        self.api_lista_autores.pop(pos, lista_autores)
+    # pop()
+    def pop_autor(self, pos):
+        return self.api_lista_autores.pop(pos)
 
-    def buscar_autor(self, nombre_obj):
-        self.api_lista_autores.index(nombre_obj)
+    # index()
+    def index_autor(self, autor):
+        return self.api_lista_autores.index(autor)
 
-    def contar_autores(self, valor):
-        self.api_lista_autores.count(valor)
+    # count()
+    def count_autor(self, autor):
+        return self.api_lista_autores.count(autor)
 
-    def ordenar_autores(self):
-        self.api_lista_autores.sort()
+    # sort()
+    def sort_autores(self):
+        self.api_lista_autores.sort(
+            key=lambda autor: autor.get_nombre_autor()
+        )
 
-    def invertir_autores(self):
+    def buscar_autor_por_nombre(self, nombre):
+        for autor in self.api_lista_autores:
+            if autor.get_nombre_autor().lower() == nombre.lower():
+                return autor
+        return None
+
+    # reverse()
+    def reverse_autores(self):
         self.api_lista_autores.reverse()
 
-        for i in range (len (self.api_lista_autores)):
-            print("imprime por posicion")
-            print(self.api_lista_autores)
-            
-            for j in range (len (self.api_lista_autores[i])):
-                print("imprime por posicion de las hijas")
-                print(self.api_lista_autores[i][j])
+    # mostrar
+    def mostrar_autores(self):
+        print("\n--- AUTORES REGISTRADOS ---")
+
+        for autor in self.api_lista_autores:
+            print(
+                f"\nNombre: {autor.get_nombre_autor()}"
+                f"\nEdad: {autor.get_edad_autor()}"
+                f"\nEstado civil: {autor.get_estado_civil()}"
+                f"\nNacionalidad: {autor.get_nacionalidad()}"
+            )
+
+            print("Libros:")
+            if autor.get_libros():
+                for libro in autor.get_libros():
+                    print(
+                        f"  - {libro.get_tematica()} | "
+                        f"{libro.get_fecha()} | "
+                        f"{libro.get_cantidad_hojas()} hojas"
+                    )
+            else:
+                print("  (Sin libros registrados)")
+

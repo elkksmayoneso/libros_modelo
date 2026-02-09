@@ -1,39 +1,37 @@
 class base_datos_libro_modelo:
-    
+
     def __init__(self):
         self.base_datos_libro = []
 
-    def guardar_libro(self, obj_libro):
-        self.base_datos_libro.append(obj_libro)
+    def append_libro(self, libro):
+        self.base_datos_libro.append(libro)
 
-    def extender_libros(self, nueva_lista):
-        self.base_datos_libro.extend(nueva_lista)
+    def extend_libros(self, lista):
+        self.base_datos_libro.extend(lista)
 
-    def insertar_libros(self, obj_libro, pos):
-        self.base_datos_libro.insert(pos, obj_libro)
+    def insert_libro(self, pos, libro):
+        self.base_datos_libro.insert(pos, libro)
 
-    def eliminar_libro(self, obj_libro):
-        self.base_datos_libro.remove(obj_libro)
+    def remove_libro(self, libro):
+        self.base_datos_libro.remove(libro)
 
-    def eliminar_por_pos_libro(self, obj_libro, pos):
-        self.base_datos_libro.pop(pos, obj_libro)
+    def pop_libro(self, pos):
+        return self.base_datos_libro.pop(pos)
 
-    def buscar_libro(self, nombre_obj):
-        self.base_datos_libro.index(nombre_obj)
+    def index_libro(self, libro):
+        return self.base_datos_libro.index(libro)
 
-    def contar_libro(self, valor):
-        self.base_datos_libro.count(valor)
+    def count_libro(self, libro):
+        return self.base_datos_libro.count(libro)
 
-    def ordenar_libros(self):
-        self.base_datos_libro.sort()
+    def sort_libros(self):
+        self.base_datos_libro.sort(key=lambda x: x.get_tematica())
 
-    def invertir_libros(self):
+    def reverse_libros(self):
         self.base_datos_libro.reverse()
 
-    def mostrar_info_libro(self):
-        for i in range(len(self.base_datos_libro)):
-            tematica = self.base_datos_libro[i].get_tematica()
-            fecha = self.base_datos_libro[i].get_fecha()
-            cantidad_hojas = self.base_datos_libro[i].get_cantidad_hojas()
-
-            print (f"Tematica libro: {tematica}, Fecha libro: {fecha}, Cantidad de hojas:  {cantidad_hojas}" )
+    def mostrar_libros(self):
+        for libro in self.base_datos_libro:
+            print(
+                f"{libro.get_tematica()} - {libro.get_fecha()} - {libro.get_cantidad_hojas()}"
+            )
